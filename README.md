@@ -1,159 +1,70 @@
-# Turborepo starter
+# resume-tailor
 
-This Turborepo starter is maintained by the Turborepo core team.
+Monorepo for the Resume Tailor app — built with [Turborepo](https://turborepo.dev/), [pnpm](https://pnpm.io/), [Vite](https://vite.dev/), [React 19](https://react.dev/), and [Tailwind CSS v4](https://tailwindcss.com/).
 
-## Using this example
+## Structure
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+```
+apps/
+  web/                  Vite + React 19 frontend
+packages/
+  typescript-config/    Shared tsconfig presets
 ```
 
-## What's inside?
+## Toolchain
 
-This Turborepo includes the following packages/apps:
+- **Build orchestration:** Turborepo
+- **Package manager:** pnpm 11 (`packageManager` pinned in [package.json](package.json))
+- **Node:** >= 22
+- **Bundler:** Vite 8 with `@vitejs/plugin-react` and Babel (`react-compiler`)
+- **Styling:** Tailwind CSS v4 via `@tailwindcss/vite`
+- **Lint:** [oxlint](https://oxc.rs/docs/guide/usage/linter) (config: [.oxlintrc.json](.oxlintrc.json))
+- **Format:** [oxfmt](https://oxc.rs/docs/guide/usage/formatter) (config: [.oxfmtrc.json](.oxfmtrc.json))
+- **Types:** TypeScript 5.9 (root) / 6.0 (web app)
 
-### Apps and Packages
+## Prerequisites
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- Node.js 22+
+- pnpm 11 (`corepack enable` or `npm i -g pnpm`)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## Install
 
 ```sh
-cd my-turborepo
-turbo build
+pnpm install
 ```
 
-Without global `turbo`, use your package manager:
+## Scripts (root)
+
+| Command               | What it does                                  |
+| --------------------- | --------------------------------------------- |
+| `pnpm dev`            | Run `dev` across all apps via Turbo           |
+| `pnpm build`          | Build all apps and packages                   |
+| `pnpm lint`           | Run oxlint across the workspace               |
+| `pnpm check-types`    | Type-check all packages                       |
+| `pnpm format`         | Format the repo with oxfmt                    |
+| `pnpm format:check`   | Verify formatting without writing             |
+
+Target a single package with Turbo's `--filter`:
 
 ```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+pnpm dev --filter=web
+pnpm build --filter=web
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Web app
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+The Vite dev server runs on port **8080** (see [apps/web/vite.config.ts](apps/web/vite.config.ts)).
 
 ```sh
-turbo build --filter=docs
+pnpm --filter web dev       # start dev server
+pnpm --filter web build     # tsc -b && vite build
+pnpm --filter web preview   # preview production build
+pnpm --filter web lint
+pnpm --filter web lint:fix
 ```
 
-Without global `turbo`:
+## Editor setup (VS Code / Cursor)
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+Workspace settings in [.vscode/settings.json](.vscode/settings.json) wire the Oxc extension as the default formatter for JS/TS/Vue/JSON and as the fix-on-save provider.
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+> Note: the Oxc VS Code extension does not yet format `.tsx` / `.jsx` files. Use `pnpm exec oxfmt` from the CLI for those.
