@@ -1,16 +1,170 @@
+import { Preview } from "../features/preview/preview";
+import { FilePenLine } from "lucide-react";
+import { useState } from "react";
+import { ModalWindow } from "../shared/ui/modal-window";
+import { createPortal } from "react-dom";
+import {
+  MDXEditor,
+  headingsPlugin,
+  listsPlugin,
+  quotePlugin,
+  thematicBreakPlugin,
+  diffSourcePlugin,
+} from "@mdxeditor/editor";
 import { useResumeStore } from "../stores";
-import showdown from "showdown";
+import { Button } from "../shared/ui/button";
+
+export type AppearanceSettings = {
+  fontFamily: string;
+  fontSize: number;
+  lineHeight: number;
+  headingColor: string;
+  textColor: string;
+  accentColor: string;
+  pagePadding: number;
+  sectionSpacing: number;
+};
 
 export default function Editor() {
-  const markdown = useResumeStore((state) => state.markdown);
-  const converter = new showdown.Converter();
-  const html = converter.makeHtml(markdown);
+  const [appearanceSettings, setAppearanceSettings] =
+    useState<AppearanceSettings>({
+      fontFamily: "Inter",
+      fontSize: 16,
+      lineHeight: 1.5,
+      headingColor: "#2563eb",
+      textColor: "#111827",
+      accentColor: "#2563eb",
+      pagePadding: 24,
+      sectionSpacing: 24,
+    });
+
+  const updateSettings = (
+    currentKey: keyof AppearanceSettings,
+    value: string | number,
+  ) => {
+    const updatedSettings = {
+      ...appearanceSettings,
+      [currentKey]: value,
+    };
+
+    setAppearanceSettings(updatedSettings);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [markdown, setMarkdown] = useState(
+    useResumeStore((state) => state.markdown),
+  );
+  const markdownUpdate = (mdContent: string) => {
+    setMarkdown(mdContent);
+  };
   return (
-    <div className="w-full h-full wysiwyg p-2">
-      <div
-        className="wysiwyg-content"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+    <div className=" wysiwyg flex w-full h-[calc(100vh-48px)]">
+      <aside className="w-0.75/12 border-l border-gray-200 p-4">
+        <button onClick={() => setIsModalOpen(true)}>
+          <FilePenLine className="w-4 h-4" />
+        </button>
+      </aside>
+      <Preview appearanceSettings={appearanceSettings} />
+      <aside className="w-2/12 border-l border-gray-200 pl-4">
+        <h2>Appearance</h2>
+
+        <div className="input-wrapper">
+          <label htmlFor="fontSize">Font Size</label>
+          <input
+            type="range"
+            min={10}
+            max={20}
+            value={appearanceSettings.fontSize}
+            name="fontSize"
+            id="fontSize"
+            onChange={(e) => updateSettings("fontSize", e.target.value)}
+          />
+          <span>{appearanceSettings.fontSize}</span>
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="lineHeight">Line height</label>
+          <input
+            type="range"
+            min={1}
+            max={2}
+            step={0.1}
+            value={appearanceSettings.lineHeight}
+            name="lineHeight"
+            id="lineHeight"
+            onChange={(e) => updateSettings("lineHeight", e.target.value)}
+          />
+          <span>{appearanceSettings.lineHeight}</span>
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="textColor">Text color</label>
+          <input
+            type="color"
+            value={appearanceSettings.textColor}
+            name="textColor"
+            id="textColor"
+            onChange={(e) => updateSettings("textColor", e.target.value)}
+          />
+          <span>{appearanceSettings.textColor}</span>
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="headingColor">Heading color</label>
+          <input
+            type="color"
+            value={appearanceSettings.headingColor}
+            name="headingColor"
+            id="headingColor"
+            onChange={(e) => updateSettings("headingColor", e.target.value)}
+          />
+          <span>{appearanceSettings.headingColor}</span>
+        </div>
+
+        <div className="input-wrapper">
+          <label htmlFor="pagePadding">Page padding</label>
+          <input
+            type="range"
+            min={0}
+            max={20}
+            value={appearanceSettings.pagePadding}
+            name="pagePadding"
+            id="pagePadding"
+            onChange={(e) => updateSettings("pagePadding", e.target.value)}
+          />
+          <span>{appearanceSettings.pagePadding}</span>
+        </div>
+      </aside>
+      {isModalOpen &&
+        createPortal(
+          <ModalWindow
+            isOpen={isModalOpen}
+            title="Markdown Editor"
+            onClose={() => setIsModalOpen(false)}
+            content={
+              <MDXEditor
+                markdown={markdown}
+                className="overflow-y-auto max-h-128"
+                plugins={[
+                  diffSourcePlugin({
+                    viewMode: "source",
+                  }),
+                  headingsPlugin(),
+                  listsPlugin(),
+                  quotePlugin(),
+                  thematicBreakPlugin(),
+                ]}
+                onChange={(e) => markdownUpdate(e)}
+              />
+            }
+            footer={
+              <Button
+                text="Save"
+                onClick={() => {
+                  useResumeStore.getState().updateMarkdown(markdown);
+                  setIsModalOpen(false);
+                }}
+              />
+            }
+          />,
+          document.body,
+        )}
     </div>
   );
 }
