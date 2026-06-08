@@ -26,17 +26,26 @@ export type AppearanceSettings = {
 };
 
 export default function Editor() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [markdown, setMarkdown] = useState(
+    useResumeStore((state) => state.markdown),
+  );
   const [appearanceSettings, setAppearanceSettings] =
-    useState<AppearanceSettings>({
-      fontFamily: "Inter",
-      fontSize: 16,
-      lineHeight: 1.5,
-      headingColor: "#2563eb",
-      textColor: "#111827",
-      accentColor: "#2563eb",
-      pagePadding: 24,
-      sectionSpacing: 24,
-    });
+    useState<AppearanceSettings>(
+      JSON.parse(
+        window.localStorage.getItem("appearanceSettings") ||
+          JSON.stringify({
+            fontFamily: "Inter",
+            fontSize: 16,
+            lineHeight: 1.5,
+            headingColor: "#2563eb",
+            textColor: "#111827",
+            accentColor: "#2563eb",
+            pagePadding: 24,
+            sectionSpacing: 24,
+          }),
+      ),
+    );
 
   const updateSettings = (
     currentKey: keyof AppearanceSettings,
@@ -48,17 +57,17 @@ export default function Editor() {
     };
 
     setAppearanceSettings(updatedSettings);
+    window.localStorage.setItem(
+      "appearanceSettings",
+      JSON.stringify(updatedSettings),
+    );
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [markdown, setMarkdown] = useState(
-    useResumeStore((state) => state.markdown),
-  );
   const markdownUpdate = (mdContent: string) => {
     setMarkdown(mdContent);
   };
   return (
-    <div className=" wysiwyg flex w-full h-[calc(100vh-48px)]">
-      <aside className="w-0.75/12 border-l border-gray-200 p-4">
+    <div className=" wysiwyg flex w-full h-[calc(100vh-49px)]">
+      <aside className="w-0.75/12 border-r border-gray-200 p-4">
         <button onClick={() => setIsModalOpen(true)}>
           <FilePenLine className="w-4 h-4" />
         </button>

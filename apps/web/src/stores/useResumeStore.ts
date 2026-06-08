@@ -7,15 +7,10 @@ interface ResumeStore {
 export const useResumeStore = create<ResumeStore>()(
   devtools((set) => ({
     markdown: `# John Doe
-    ## Experience
-    ## Company 1
-    - Job Title 1
-    - Job Title 2
-    - Job Title 3
-    ## Education
-    ## University 1
-    - Degree 1
-    - Degree 2`,
+test description
+* test 1
+* test 2
+* test 3`,
     updateMarkdown: (markdown) => set({ markdown: markdown }),
   })),
 );

@@ -9,6 +9,7 @@ export const Preview: React.FC<PreviewProps> = ({ appearanceSettings }) => {
   const markdown = useResumeStore((state) => state.markdown);
   const converter = new showdown.Converter();
   const html = converter.makeHtml(markdown);
+
   return (
     <div className="wrapper w-9/12 bg-gray-100 p-3 overflow-y-auto max-h-screen">
       <div
