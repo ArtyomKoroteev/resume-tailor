@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "@mdxeditor/editor/style.css";
-import { FileCode, X, Maximize2, Minimize2 } from "lucide-react";
+import { X, Maximize2, Minimize2 } from "lucide-react";
 
 export const ModalWindow: React.FC<{
   isOpen: boolean;
   title: string;
+  icon: React.ReactNode;
   content: React.ReactNode;
   footer?: React.ReactNode;
   onClose: () => void;
-}> = ({ title, content, footer, onClose }) => {
+}> = ({ title, icon, content, footer, onClose }) => {
   const [isExpanded, toggleExpanded] = useState(false);
   const toggleExpandMode = () => {
     toggleExpanded(!isExpanded);
@@ -17,11 +18,11 @@ export const ModalWindow: React.FC<{
     <>
       <div className="fixed inset-0 bg-black/70 flex justify-center items-center min-h-screen min-w-screen">
         <div
-          className={`bg-white rounded-md  pl-4 pr-4 pt-4 pb-0 ${isExpanded ? "w-full h-full" : "w-4xl min-h-6/12 flex flex-col"}`}
+          className={`bg-white rounded-md  pl-4 pr-4 pt-4 pb-0 flex flex-col ${isExpanded ? "w-full h-full" : "w-4xl min-h-6/12"}`}
         >
           <div className="modal-header flex justify-between items-center">
             <span className="text-m font-bold flex items-center gap-2">
-              <FileCode className="w-4 h-4" /> {title}
+              {icon} {title}
             </span>
             <div className="btn-group flex items-center gap-2">
               <button onClick={toggleExpandMode}>

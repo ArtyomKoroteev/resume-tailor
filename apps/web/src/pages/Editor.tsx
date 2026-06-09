@@ -6,6 +6,7 @@ import {
   PanelTopBottomDashed,
   Paintbrush,
   Heading,
+  FileCode,
 } from "lucide-react";
 import { useState } from "react";
 import { ModalWindow } from "../shared/ui/modal-window";
@@ -20,17 +21,8 @@ import {
 } from "@mdxeditor/editor";
 import { useResumeStore } from "../stores";
 import { Button } from "../shared/ui/button";
-
-export type AppearanceSettings = {
-  fontFamily: string;
-  fontSize: number;
-  lineHeight: number;
-  headingColor: string;
-  textColor: string;
-  accentColor: string;
-  pagePadding: number;
-  sectionSpacing: number;
-};
+import { ActionPanel } from "../features/action-panel";
+import { type AppearanceSettings } from "../features/appearance-settings";
 
 export default function Editor() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,18 +66,27 @@ export default function Editor() {
   };
   return (
     <div className=" wysiwyg flex w-full h-[calc(100vh-49px)]">
-      <aside className="w-0.75/12 border-r border-gray-200 p-4">
-        <button onClick={() => setIsModalOpen(true)}>
-          <FilePenLine className="w-4 h-4" />
-        </button>
+      <aside className="w-[50px] border-r border-gray-200 p-4">
+        <ActionPanel
+          actions={[
+            {
+              icon: <FilePenLine className="w-4 h-4" />,
+              title: "Open Markdown Editor",
+              action: () => setIsModalOpen(true),
+            },
+          ]}
+        />
       </aside>
-      <Preview appearanceSettings={appearanceSettings} />
-      <aside className="w-2/12 border-l border-gray-200 pl-4">
+      <div className="wrapper w-10/12 bg-gray-100 p-3 overflow-y-auto max-h-screen">
+        <Preview appearanceSettings={appearanceSettings} />
+      </div>
+
+      <aside className="w-2/12 border-l border-gray-200 pl-3 pr-3">
         <div className="appearance-settings border-b border-gray-200 pb-3 pt-3 mb-4">
           <h3 className="font-bold text-sm">Appearance</h3>
         </div>
 
-        <div className="input-wrapper flex flex-col gap-1 mb-2">
+        <div className="input-wrapper flex flex-col gap-1 mb-3">
           <div className="label-container flex justify-between items-center text-sm">
             <label htmlFor="fontSize" className="flex items-center gap-1">
               <Type className="w-4 h-4" /> Font Size
@@ -104,6 +105,7 @@ export default function Editor() {
             onChange={(e) => updateSettings("fontSize", e.target.value)}
           />
         </div>
+
         <div className="input-wrapper flex flex-col gap-1 mb-3">
           <div className="label-container flex justify-between items-center text-sm">
             <label htmlFor="lineHeight" className="flex items-center gap-1">
@@ -127,7 +129,7 @@ export default function Editor() {
 
         <div className="input-wrapper flex flex-col gap-1 mb-3">
           <div className="label-container flex justify-between items-center text-sm">
-            <label htmlFor="lineHeight" className="flex items-center gap-1">
+            <label htmlFor="pagePadding" className="flex items-center gap-1">
               <PanelTopBottomDashed className="w-4 h-4" /> Page padding
             </label>
             <span className="text-xs border border-gray-200 rounded-md px-1 py-1">
@@ -163,9 +165,10 @@ export default function Editor() {
             <span className="text-xs">{appearanceSettings.textColor}</span>
           </div>
         </div>
+
         <div className="input-wrapper flex justify-between items-center mb-3">
           <div className="label-container flex justify-between items-center text-sm">
-            <label htmlFor="textColor" className="flex items-center gap-1">
+            <label htmlFor="headingColor" className="flex items-center gap-1">
               <Heading className="w-4 h-4" /> Heading color
             </label>
           </div>
@@ -174,8 +177,8 @@ export default function Editor() {
             <input
               type="color"
               value={appearanceSettings.headingColor}
-              name="textColor"
-              id="textColor"
+              name="headingColor"
+              id="headingColor"
               onChange={(e) => updateSettings("headingColor", e.target.value)}
             />
             <span className="text-xs">{appearanceSettings.headingColor}</span>
@@ -187,6 +190,7 @@ export default function Editor() {
           <ModalWindow
             isOpen={isModalOpen}
             title="Markdown Editor"
+            icon={<FileCode className="w-4 h-4" />}
             onClose={() => setIsModalOpen(false)}
             content={
               <MDXEditor

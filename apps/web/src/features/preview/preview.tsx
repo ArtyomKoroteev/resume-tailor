@@ -1,6 +1,6 @@
 import { useResumeStore } from "../../stores";
 import showdown from "showdown";
-import { type AppearanceSettings } from "../../pages/Editor";
+import { type AppearanceSettings } from "../appearance-settings";
 
 interface PreviewProps {
   appearanceSettings: AppearanceSettings;
@@ -11,7 +11,7 @@ export const Preview: React.FC<PreviewProps> = ({ appearanceSettings }) => {
   const html = converter.makeHtml(markdown);
 
   return (
-    <div className="wrapper w-9/12 bg-gray-100 p-3 overflow-y-auto max-h-screen">
+    <div>
       <div
         className="w-[768px] min-h-[1024px] bg-white m-auto wysiwyg-content"
         dangerouslySetInnerHTML={{ __html: html }}
