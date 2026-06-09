@@ -1,5 +1,12 @@
 import { Preview } from "../features/preview/preview";
-import { FilePenLine } from "lucide-react";
+import {
+  FilePenLine,
+  Type,
+  Ruler,
+  PanelTopBottomDashed,
+  Paintbrush,
+  Heading,
+} from "lucide-react";
 import { useState } from "react";
 import { ModalWindow } from "../shared/ui/modal-window";
 import { createPortal } from "react-dom";
@@ -74,10 +81,19 @@ export default function Editor() {
       </aside>
       <Preview appearanceSettings={appearanceSettings} />
       <aside className="w-2/12 border-l border-gray-200 pl-4">
-        <h2>Appearance</h2>
+        <div className="appearance-settings border-b border-gray-200 pb-3 pt-3 mb-4">
+          <h3 className="font-bold text-sm">Appearance</h3>
+        </div>
 
-        <div className="input-wrapper">
-          <label htmlFor="fontSize">Font Size</label>
+        <div className="input-wrapper flex flex-col gap-1 mb-2">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="fontSize" className="flex items-center gap-1">
+              <Type className="w-4 h-4" /> Font Size
+            </label>
+            <span className="text-xs border border-gray-200 rounded-md px-1 py-1">
+              {appearanceSettings.fontSize}px
+            </span>
+          </div>
           <input
             type="range"
             min={10}
@@ -87,10 +103,16 @@ export default function Editor() {
             id="fontSize"
             onChange={(e) => updateSettings("fontSize", e.target.value)}
           />
-          <span>{appearanceSettings.fontSize}</span>
         </div>
-        <div className="input-wrapper">
-          <label htmlFor="lineHeight">Line height</label>
+        <div className="input-wrapper flex flex-col gap-1 mb-3">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="lineHeight" className="flex items-center gap-1">
+              <Ruler className="w-4 h-4" /> Line height
+            </label>
+            <span className="text-xs border border-gray-200 rounded-md px-1 py-1">
+              {appearanceSettings.lineHeight}
+            </span>
+          </div>
           <input
             type="range"
             min={1}
@@ -101,33 +123,17 @@ export default function Editor() {
             id="lineHeight"
             onChange={(e) => updateSettings("lineHeight", e.target.value)}
           />
-          <span>{appearanceSettings.lineHeight}</span>
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="textColor">Text color</label>
-          <input
-            type="color"
-            value={appearanceSettings.textColor}
-            name="textColor"
-            id="textColor"
-            onChange={(e) => updateSettings("textColor", e.target.value)}
-          />
-          <span>{appearanceSettings.textColor}</span>
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="headingColor">Heading color</label>
-          <input
-            type="color"
-            value={appearanceSettings.headingColor}
-            name="headingColor"
-            id="headingColor"
-            onChange={(e) => updateSettings("headingColor", e.target.value)}
-          />
-          <span>{appearanceSettings.headingColor}</span>
         </div>
 
-        <div className="input-wrapper">
-          <label htmlFor="pagePadding">Page padding</label>
+        <div className="input-wrapper flex flex-col gap-1 mb-3">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="lineHeight" className="flex items-center gap-1">
+              <PanelTopBottomDashed className="w-4 h-4" /> Page padding
+            </label>
+            <span className="text-xs border border-gray-200 rounded-md px-1 py-1">
+              {appearanceSettings.pagePadding}px
+            </span>
+          </div>
           <input
             type="range"
             min={0}
@@ -137,7 +143,43 @@ export default function Editor() {
             id="pagePadding"
             onChange={(e) => updateSettings("pagePadding", e.target.value)}
           />
-          <span>{appearanceSettings.pagePadding}</span>
+        </div>
+
+        <div className="input-wrapper flex justify-between items-center mb-3">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="textColor" className="flex items-center gap-1">
+              <Paintbrush className="w-4 h-4" /> Text color
+            </label>
+          </div>
+
+          <div className="input-color-wrapper flex items-center gap-1 border border-gray-200 rounded-md px-1 py-0.5">
+            <input
+              type="color"
+              value={appearanceSettings.textColor}
+              name="textColor"
+              id="textColor"
+              onChange={(e) => updateSettings("textColor", e.target.value)}
+            />
+            <span className="text-xs">{appearanceSettings.textColor}</span>
+          </div>
+        </div>
+        <div className="input-wrapper flex justify-between items-center mb-3">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="textColor" className="flex items-center gap-1">
+              <Heading className="w-4 h-4" /> Heading color
+            </label>
+          </div>
+
+          <div className="input-color-wrapper flex items-center gap-1 border border-gray-200 rounded-md px-1 py-0.5">
+            <input
+              type="color"
+              value={appearanceSettings.headingColor}
+              name="textColor"
+              id="textColor"
+              onChange={(e) => updateSettings("headingColor", e.target.value)}
+            />
+            <span className="text-xs">{appearanceSettings.headingColor}</span>
+          </div>
         </div>
       </aside>
       {isModalOpen &&
