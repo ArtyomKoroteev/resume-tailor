@@ -6,8 +6,8 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
+  index("./App.tsx"),
   layout("./layouts/main-layout.tsx", [
-    index("./App.tsx"),
     route("editor", "./pages/Editor.tsx"),
   ]),
 ] satisfies RouteConfig;

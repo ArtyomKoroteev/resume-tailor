@@ -9,7 +9,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({ text, icon, onClick }) => {
   return (
     <button
-      className="bg-blue-500 text-white text-sm px-3 py-1 rounded-sm hover:bg-blue-600"
+      className="bg-blue-500 text-white text-sm px-3 py-1 flex items-center gap-2 rounded-sm hover:bg-blue-600"
       onClick={onClick}
     >
       {icon} {text}
