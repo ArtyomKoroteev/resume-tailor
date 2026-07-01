@@ -22,6 +22,7 @@ export const Preview: React.FC<PreviewProps> = ({ appearanceSettings }) => {
             "--text-color": appearanceSettings.textColor,
             "--heading-color": appearanceSettings.headingColor,
             "--page-padding": `${appearanceSettings.pagePadding}px`,
+            "--list-indent": `${appearanceSettings.listIndent}px`,
           } as React.CSSProperties
         }
       />

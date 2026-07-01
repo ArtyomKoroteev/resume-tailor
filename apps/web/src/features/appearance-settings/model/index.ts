@@ -7,4 +7,5 @@ export type AppearanceSettings = {
     accentColor: string;
     pagePadding: number;
     sectionSpacing: number;
+    listIndent: number;
   };

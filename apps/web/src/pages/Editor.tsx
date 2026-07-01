@@ -7,6 +7,7 @@ import {
   Paintbrush,
   Heading,
   FileCode,
+  List,
 } from "lucide-react";
 import { useState } from "react";
 import { ModalWindow } from "../shared/ui/modal-window";
@@ -183,6 +184,26 @@ export default function Editor() {
             />
             <span className="text-xs">{appearanceSettings.headingColor}</span>
           </div>
+        </div>
+
+        <div className="input-wrapper flex flex-col gap-1 mb-3">
+          <div className="label-container flex justify-between items-center text-sm">
+            <label htmlFor="listIndent" className="flex items-center gap-1">
+              <List className="w-4 h-4" /> List indent
+            </label>
+            <span className="text-xs border border-gray-200 rounded-md px-1 py-1">
+              {appearanceSettings.listIndent}px
+            </span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={20}
+            value={appearanceSettings.listIndent}
+            name="listIndent"
+            id="listIndent"
+            onChange={(e) => updateSettings("listIndent", e.target.value)}
+          />
         </div>
       </aside>
       {isModalOpen &&
