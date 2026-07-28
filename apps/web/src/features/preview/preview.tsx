@@ -1,6 +1,6 @@
 import { useResumeStore } from "../../stores";
 import showdown from "showdown";
-import { type AppearanceSettings } from "../appearance-settings";
+import { toCssVariables, type AppearanceSettings } from "../appearance-settings";
 
 interface PreviewProps {
   appearanceSettings: AppearanceSettings;
@@ -15,16 +15,7 @@ export const Preview: React.FC<PreviewProps> = ({ appearanceSettings }) => {
       <div
         className="w-[768px] min-h-[1024px] bg-white m-auto wysiwyg-content"
         dangerouslySetInnerHTML={{ __html: html }}
-        style={
-          {
-            "--font-size": `${appearanceSettings.fontSize}px`,
-            "--line-height": appearanceSettings.lineHeight,
-            "--text-color": appearanceSettings.textColor,
-            "--heading-color": appearanceSettings.headingColor,
-            "--page-padding": `${appearanceSettings.pagePadding}px`,
-            "--list-indent": `${appearanceSettings.listIndent}px`,
-          } as React.CSSProperties
-        }
+        style={toCssVariables(appearanceSettings)}
       />
     </div>
   );
