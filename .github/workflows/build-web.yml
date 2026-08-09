@@ -23,6 +23,7 @@ jobs:
       - name: Clean old build
         run: rm -rf dist
       - name: Build Web
+        working-directory: apps/web
         run: pnpm build
 
       - name: Deploy
@@ -30,5 +31,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=resume-tailor
+          command: pages deploy apps/web/dist --project-name=resume-tailor
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
