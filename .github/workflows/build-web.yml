@@ -25,6 +25,19 @@ jobs:
       - name: Build Web
         working-directory: apps/web
         run: pnpm build
+      - name: Debug build
+        run: |
+          echo "Current root:"
+          pwd
+      
+          echo "apps/web:"
+          ls -la apps/web
+      
+          echo "All dist folders:"
+          find . -type d -name dist
+      
+          echo "All build folders:"
+          find . -type d -name build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
