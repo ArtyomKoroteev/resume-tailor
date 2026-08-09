@@ -29,13 +29,13 @@ jobs:
         run: |
           echo "Current root:"
           pwd
-      
+
           echo "apps/web:"
           ls -la apps/web
-      
+
           echo "All dist folders:"
           find . -type d -name dist
-      
+
           echo "All build folders:"
           find . -type d -name build
 
@@ -45,5 +45,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: apps/web
-          command: pages deploy dist --project-name=resume-tailor
+          command: pages deploy build --project-name=resume-tailor
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
