@@ -1,0 +1,21 @@
+name: Build Web Application
+on: 
+  push:
+    branches:
+      - develop
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Clean old build
+        run: rm -rf dist
+      - name: Build Web
+        run: pnpm build
