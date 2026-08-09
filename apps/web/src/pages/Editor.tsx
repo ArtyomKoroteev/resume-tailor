@@ -1,8 +1,8 @@
-import { Preview } from "../features/preview/preview";
-import { FilePenLine, FileCode } from "lucide-react";
-import { useState } from "react";
-import { ModalWindow } from "../shared/ui/modal-window";
-import { createPortal } from "react-dom";
+import { Preview } from '../features/preview/preview';
+import { FilePenLine, FileCode } from 'lucide-react';
+import { useState } from 'react';
+import { ModalWindow } from '../shared/ui/modal-window';
+import { createPortal } from 'react-dom';
 import {
   MDXEditor,
   headingsPlugin,
@@ -10,20 +10,15 @@ import {
   quotePlugin,
   thematicBreakPlugin,
   diffSourcePlugin,
-} from "@mdxeditor/editor";
-import { useResumeStore } from "../stores";
-import { Button } from "../shared/ui/button";
-import { ActionPanel } from "../features/action-panel";
-import {
-  AppearanceSettingsPanel,
-  useAppearanceSettings,
-} from "../features/appearance-settings";
+} from '@mdxeditor/editor';
+import { useResumeStore } from '../stores';
+import { Button } from '../shared/ui/button';
+import { ActionPanel } from '../features/action-panel';
+import { AppearanceSettingsPanel, useAppearanceSettings } from '../features/appearance-settings';
 
 export default function Editor() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [markdown, setMarkdown] = useState(
-    useResumeStore((state) => state.markdown),
-  );
+  const [markdown, setMarkdown] = useState(useResumeStore((state) => state.markdown));
   const appearance = useAppearanceSettings();
 
   const markdownUpdate = (mdContent: string) => {
@@ -36,7 +31,7 @@ export default function Editor() {
           actions={[
             {
               icon: <FilePenLine className="w-4 h-4" />,
-              title: "Open Markdown Editor",
+              title: 'Open Markdown Editor',
               action: () => setIsModalOpen(true),
             },
           ]}
@@ -62,7 +57,7 @@ export default function Editor() {
                 className="overflow-y-auto max-h-128"
                 plugins={[
                   diffSourcePlugin({
-                    viewMode: "source",
+                    viewMode: 'source',
                   }),
                   headingsPlugin(),
                   listsPlugin(),

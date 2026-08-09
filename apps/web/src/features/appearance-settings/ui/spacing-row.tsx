@@ -23,9 +23,7 @@ export const SpacingRow: React.FC<SpacingRowProps> = ({
         <label htmlFor={inputId} className="text-muted">
           <span className="font-mono">{token}</span> · {label}
         </label>
-        <span className="border border-gray-200 rounded-md px-1.5 py-0.5">
-          {value}px
-        </span>
+        <span className="border border-gray-200 rounded-md px-1.5 py-0.5">{value}px</span>
       </div>
       <input
         id={inputId}
