@@ -1,2 +1,2 @@
-export { ActionPanel } from "./ui/action-panel";
-export * from './model'
+export { ActionPanel } from './ui/action-panel';
+export * from './model';
