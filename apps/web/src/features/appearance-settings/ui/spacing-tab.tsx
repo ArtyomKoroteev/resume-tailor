@@ -1,15 +1,12 @@
-import { SPACING_ROWS, type Spacing } from "../model";
-import { SpacingRow } from "./spacing-row";
+import { SPACING_ROWS, type Spacing } from '../model';
+import { SpacingRow } from './spacing-row';
 
 interface SpacingTabProps {
   spacing: Spacing;
   onChange: (patch: Partial<Spacing>) => void;
 }
 
-export const SpacingTab: React.FC<SpacingTabProps> = ({
-  spacing,
-  onChange,
-}) => {
+export const SpacingTab: React.FC<SpacingTabProps> = ({ spacing, onChange }) => {
   return (
     <div>
       <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">

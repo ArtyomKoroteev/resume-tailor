@@ -1,5 +1,5 @@
-import React from "react";
-import type { Action } from "../model";
+import React from 'react';
+import type { Action } from '../model';
 
 interface ActionPanelProps {
   actions: Array<Action>;

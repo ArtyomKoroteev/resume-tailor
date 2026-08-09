@@ -1,6 +1,6 @@
-import { useResumeStore } from "../../stores";
-import showdown from "showdown";
-import { toCssVariables, type AppearanceSettings } from "../appearance-settings";
+import { useResumeStore } from '../../stores';
+import showdown from 'showdown';
+import { toCssVariables, type AppearanceSettings } from '../appearance-settings';
 
 interface PreviewProps {
   appearanceSettings: AppearanceSettings;

@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 interface ResumeStore {
   markdown: string;
-  updateMarkdown: (markdown: ResumeStore["markdown"]) => void;
+  updateMarkdown: (markdown: ResumeStore['markdown']) => void;
 }
 export const useResumeStore = create<ResumeStore>()(
   devtools((set) => ({

@@ -1,7 +1,7 @@
-import { Outlet } from "react-router";
-import { Header } from "../shared/ui/header";
-import { Button } from "../shared/ui/button";
-import { Printer } from "lucide-react";
+import { Outlet } from 'react-router';
+import { Header } from '../shared/ui/header';
+import { Button } from '../shared/ui/button';
+import { Printer } from 'lucide-react';
 
 export default function MainLayout() {
   return (
