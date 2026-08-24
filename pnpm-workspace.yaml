@@ -6,3 +6,4 @@ allowBuilds:
   core-js: false
   '@parcel/watcher': false
   workerd: true
+  '@nestjs/core': true
