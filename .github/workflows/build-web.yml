@@ -8,18 +8,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '24'
+
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 11 
+        uses: pnpm/action-setup@v4
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Clean old build
         run: rm -rf dist
       - name: Build Web
+        working-directory: apps/web
         run: pnpm build
+      - name: Debug build
+        run: |
+          echo "Current root:"
+          pwd
+
+          echo "apps/web:"
+          ls -la apps/web
+
+          echo "All dist folders:"
+          find . -type d -name dist
+
+          echo "All build folders:"
+          find . -type d -name build
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: apps/web
+          command: pages deploy build/client --project-name=resume-tailor
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

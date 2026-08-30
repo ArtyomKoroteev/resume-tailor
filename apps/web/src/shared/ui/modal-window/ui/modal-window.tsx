@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '@mdxeditor/editor/style.css';
 import { X, Maximize2, Minimize2 } from 'lucide-react';
 
@@ -12,8 +12,17 @@ export const ModalWindow: React.FC<{
 }> = ({ title, icon, content, footer, onClose }) => {
   const [isExpanded, toggleExpanded] = useState(false);
   const toggleExpandMode = () => {
-    toggleExpanded(!isExpanded);
+    toggleExpanded((expanded) => !expanded);
   };
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
   return (
     <>
       <div className="fixed inset-0 bg-black/70 flex justify-center items-center min-h-screen min-w-screen">

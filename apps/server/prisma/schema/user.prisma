@@ -1,0 +1,16 @@
+model Resume {
+  id       String @id @default(uuid())
+  title    String
+  markdown String @default("")
+
+  /// Typography, spacing and color settings from the appearance panel.
+  appearance Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+
+  @@index([authorId])
+}
