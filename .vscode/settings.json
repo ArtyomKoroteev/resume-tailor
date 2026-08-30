@@ -31,5 +31,6 @@
   "[css]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "oxc.configPath": ".oxlintrc.json"
+  "oxc.configPath": ".oxlintrc.json",
+  "prettier.enable": false
 }
