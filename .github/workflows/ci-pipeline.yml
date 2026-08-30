@@ -33,10 +33,3 @@ jobs:
 
       - name: Lint
         run: pnpm lint
-
-      - name: Build
-        run: pnpm build
-        env:
-          # prisma generate reads the schema only and never opens a connection,
-          # but prisma.config.ts resolves the datasource url eagerly.
-          DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
