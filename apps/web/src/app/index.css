@@ -1,6 +1,6 @@
 /* src/styles/index.css */
-@import "tailwindcss";
-@import "./wysiwyg.css";
+@import 'tailwindcss';
+@import './wysiwyg.css';
 
 @theme {
   --font-sans: Inter, system-ui, sans-serif;

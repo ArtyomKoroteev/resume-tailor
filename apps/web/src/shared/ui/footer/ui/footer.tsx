@@ -4,7 +4,10 @@ import { FileText, ExternalLink } from 'lucide-react';
 
 const REPO_URL = 'https://github.com/ArtyomKoroteev/resume-tailor';
 
-const columns: Array<{ heading: string; links: Array<{ label: string; to: string }> }> = [
+const columns: Array<{
+  heading: string;
+  links: Array<{ label: string; to: string }>;
+}> = [
   {
     heading: 'Product',
     links: [
@@ -26,13 +29,16 @@ export const Footer: React.FC = () => {
     <footer className="border-t border-border bg-background text-foreground antialiased">
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-2 lg:col-span-2">
-          <Link to="/" className="flex items-center gap-2 font-bold text-primary">
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-bold text-primary"
+          >
             <FileText className="w-4 h-4" />
             Resume Builder
           </Link>
           <p className="max-w-xs text-sm text-muted">
-            Markdown in, polished resume out. Write, style and export an ATS-friendly resume without
-            leaving your browser.
+            Markdown in, polished resume out. Write, style and export an
+            ATS-friendly resume without leaving your browser.
           </p>
         </div>
 
@@ -40,7 +46,11 @@ export const Footer: React.FC = () => {
           <nav key={column.heading} className="flex flex-col gap-2">
             <h2 className="text-sm font-semibold">{column.heading}</h2>
             {column.links.map((link) => (
-              <Link key={link.to} to={link.to} className="text-sm text-muted hover:text-foreground">
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-sm text-muted hover:text-foreground"
+              >
                 {link.label}
               </Link>
             ))}

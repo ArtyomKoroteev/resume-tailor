@@ -1,6 +1,9 @@
 import React, { useId } from 'react';
 
-interface InputProps extends Omit<React.ComponentPropsWithoutRef<'input'>, 'id'> {
+interface InputProps extends Omit<
+  React.ComponentPropsWithoutRef<'input'>,
+  'id'
+> {
   label: string;
   error?: string;
   icon?: React.ReactNode;
@@ -43,7 +46,9 @@ export const Input: React.FC<InputProps> = ({
           {...rest}
         />
 
-        {trailing && <span className="absolute right-2 flex items-center">{trailing}</span>}
+        {trailing && (
+          <span className="absolute right-2 flex items-center">{trailing}</span>
+        )}
       </div>
 
       {error && (

@@ -6,7 +6,10 @@ interface SpacingTabProps {
   onChange: (patch: Partial<Spacing>) => void;
 }
 
-export const SpacingTab: React.FC<SpacingTabProps> = ({ spacing, onChange }) => {
+export const SpacingTab: React.FC<SpacingTabProps> = ({
+  spacing,
+  onChange,
+}) => {
   return (
     <div>
       <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">

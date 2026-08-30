@@ -3,7 +3,10 @@ import React from 'react';
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 type ButtonSize = 'sm' | 'md';
 
-interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'children'> {
+interface ButtonProps extends Omit<
+  React.ComponentPropsWithoutRef<'button'>,
+  'children'
+> {
   text?: string;
   icon?: React.ReactNode;
   variant?: ButtonVariant;
@@ -13,7 +16,8 @@ interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'ch
 
 const variants: Record<ButtonVariant, string> = {
   primary: 'bg-blue-500 text-white hover:bg-blue-600',
-  secondary: 'border border-border text-foreground bg-background hover:bg-gray-50',
+  secondary:
+    'border border-border text-foreground bg-background hover:bg-gray-50',
   ghost: 'text-muted hover:text-foreground',
 };
 

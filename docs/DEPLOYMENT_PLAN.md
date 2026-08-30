@@ -5,6 +5,7 @@
 Use **Vercel** for the first version.
 
 Why:
+
 - Easy static deployment
 - Good preview deployments for every pull request
 - Works well with monorepos
@@ -12,6 +13,7 @@ Why:
 - Minimal setup
 
 Alternative options:
+
 - **Netlify** — also good for static apps
 - **GitHub Pages** — free and simple, but less flexible for future backend work
 
@@ -31,3 +33,4 @@ Preview Deployment
 Merge to main
     ↓
 Production Deployment
+```

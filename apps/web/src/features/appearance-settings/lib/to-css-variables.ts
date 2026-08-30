@@ -5,7 +5,9 @@ import type { AppearanceSettings } from '../model';
  * Maps settings onto the CSS custom properties consumed by `wysiwyg.css`.
  * Body size/line-height keep the legacy `--font-size` / `--line-height` names.
  */
-export const toCssVariables = (settings: AppearanceSettings): React.CSSProperties => {
+export const toCssVariables = (
+  settings: AppearanceSettings,
+): React.CSSProperties => {
   const { typography, spacing, colors } = settings;
   const { scale } = typography;
 

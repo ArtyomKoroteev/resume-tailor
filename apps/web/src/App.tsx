@@ -58,11 +58,13 @@ const steps = [
   },
   {
     title: 'Make it yours',
-    description: 'Adjust fonts, spacing and colors until the preview matches the tone you want.',
+    description:
+      'Adjust fonts, spacing and colors until the preview matches the tone you want.',
   },
   {
     title: 'Export and apply',
-    description: 'Download a polished PDF and send it off — the markdown stays yours to reuse.',
+    description:
+      'Download a polished PDF and send it off — the markdown stays yours to reuse.',
   },
 ];
 
@@ -89,10 +91,12 @@ function App() {
           <span className="mb-4 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted">
             Markdown in, polished resume out
           </span>
-          <h1 className="text-5xl font-bold mb-4 max-w-2xl">Build your resume in minutes</h1>
+          <h1 className="text-5xl font-bold mb-4 max-w-2xl">
+            Build your resume in minutes
+          </h1>
           <p className="text-lg text-muted max-w-xl mb-8">
-            Write in markdown, customize the look, and export a clean, ATS-friendly resume as PDF,
-            HTML, or markdown — all in your browser.
+            Write in markdown, customize the look, and export a clean,
+            ATS-friendly resume as PDF, HTML, or markdown — all in your browser.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -110,7 +114,9 @@ function App() {
             </Link>
           </div>
 
-          <p className="mt-4 text-xs text-muted">No signup required to try the editor.</p>
+          <p className="mt-4 text-xs text-muted">
+            No signup required to try the editor.
+          </p>
         </section>
 
         <section className="border-t border-border bg-gray-50 px-6 py-16">
@@ -119,7 +125,8 @@ function App() {
               Everything you need, nothing else
             </h2>
             <p className="text-center text-muted mb-10">
-              A focused editor built around one job: getting your resume out the door.
+              A focused editor built around one job: getting your resume out the
+              door.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -139,11 +146,16 @@ function App() {
 
         <section className="px-6 py-16">
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-center text-2xl font-bold mb-10">How it works</h2>
+            <h2 className="text-center text-2xl font-bold mb-10">
+              How it works
+            </h2>
 
             <ol className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {steps.map((step, index) => (
-                <li key={step.title} className="flex flex-col items-center gap-2 text-center">
+                <li
+                  key={step.title}
+                  className="flex flex-col items-center gap-2 text-center"
+                >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-500 font-semibold text-white">
                     {index + 1}
                   </span>
@@ -159,8 +171,8 @@ function App() {
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
             <h2 className="text-3xl font-bold">Ready to write yours?</h2>
             <p className="text-muted">
-              Open the editor and start from the sample resume — you can always create an account
-              later to save your work.
+              Open the editor and start from the sample resume — you can always
+              create an account later to save your work.
             </p>
             <Link
               to="/editor"

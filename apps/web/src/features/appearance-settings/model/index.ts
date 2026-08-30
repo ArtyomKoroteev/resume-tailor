@@ -109,12 +109,13 @@ export const SPACING_ROWS: Array<{
   },
 ];
 
-export const FONT_WEIGHT_OPTIONS: Array<{ value: FontWeight; label: string }> = [
-  { value: 400, label: 'Regular' },
-  { value: 500, label: 'Medium' },
-  { value: 600, label: 'Semibold' },
-  { value: 700, label: 'Bold' },
-];
+export const FONT_WEIGHT_OPTIONS: Array<{ value: FontWeight; label: string }> =
+  [
+    { value: 400, label: 'Regular' },
+    { value: 500, label: 'Medium' },
+    { value: 600, label: 'Semibold' },
+    { value: 700, label: 'Bold' },
+  ];
 
 /**
  * Web-safe stacks only — the app does not load any webfonts, so anything

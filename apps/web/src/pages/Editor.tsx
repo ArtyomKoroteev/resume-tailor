@@ -14,11 +14,16 @@ import {
 import { useResumeStore } from '../stores';
 import { Button } from '../shared/ui/button';
 import { ActionPanel } from '../features/action-panel';
-import { AppearanceSettingsPanel, useAppearanceSettings } from '../features/appearance-settings';
+import {
+  AppearanceSettingsPanel,
+  useAppearanceSettings,
+} from '../features/appearance-settings';
 
 export default function Editor() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [markdown, setMarkdown] = useState(useResumeStore((state) => state.markdown));
+  const [markdown, setMarkdown] = useState(
+    useResumeStore((state) => state.markdown),
+  );
   const appearance = useAppearanceSettings();
 
   const markdownUpdate = (mdContent: string) => {

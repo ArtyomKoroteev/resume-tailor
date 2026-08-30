@@ -8,7 +8,8 @@ export default function ResumeList() {
     {
       id: '1',
       title: 'Senior Frontend Developer',
-      excerpt: 'React, TypeScript and design systems. 7 years building product UIs.',
+      excerpt:
+        'React, TypeScript and design systems. 7 years building product UIs.',
       updatedAt: 'Aug 21, 2026',
     },
     {

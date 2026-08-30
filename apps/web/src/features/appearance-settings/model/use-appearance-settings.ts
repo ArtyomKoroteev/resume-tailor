@@ -12,7 +12,9 @@ import { loadAppearanceSettings, saveAppearanceSettings } from '../lib/storage';
 
 export type AppearanceSettingsController = {
   settings: AppearanceSettings;
-  updateTypography: (patch: Partial<Pick<Typography, 'headingFont' | 'bodyFont'>>) => void;
+  updateTypography: (
+    patch: Partial<Pick<Typography, 'headingFont' | 'bodyFont'>>,
+  ) => void;
   updateTypeStyle: (key: TypeScaleKey, patch: Partial<TypeStyle>) => void;
   updateSpacing: (patch: Partial<Spacing>) => void;
   updateColors: (patch: Partial<Colors>) => void;
@@ -20,15 +22,20 @@ export type AppearanceSettingsController = {
 };
 
 export const useAppearanceSettings = (): AppearanceSettingsController => {
-  const [settings, setSettings] = useState<AppearanceSettings>(loadAppearanceSettings);
+  const [settings, setSettings] = useState<AppearanceSettings>(
+    loadAppearanceSettings,
+  );
 
-  const applySettings = useCallback((next: (current: AppearanceSettings) => AppearanceSettings) => {
-    setSettings((current) => {
-      const updated = next(current);
-      saveAppearanceSettings(updated);
-      return updated;
-    });
-  }, []);
+  const applySettings = useCallback(
+    (next: (current: AppearanceSettings) => AppearanceSettings) => {
+      setSettings((current) => {
+        const updated = next(current);
+        saveAppearanceSettings(updated);
+        return updated;
+      });
+    },
+    [],
+  );
 
   const updateTypography = useCallback(
     (patch: Partial<Pick<Typography, 'headingFont' | 'bodyFont'>>) => {

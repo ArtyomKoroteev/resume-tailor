@@ -12,12 +12,12 @@ pnpm dev
 
 ## Commands
 
-| Command | Does |
-| --- | --- |
-| `pnpm db:generate` | Regenerate the client after any schema edit |
-| `pnpm db:migrate --name <name>` | Create + apply a migration (dev) |
-| `pnpm db:deploy` | Apply pending migrations (CI / prod) |
-| `pnpm db:studio` | Browse data in the browser |
+| Command                         | Does                                        |
+| ------------------------------- | ------------------------------------------- |
+| `pnpm db:generate`              | Regenerate the client after any schema edit |
+| `pnpm db:migrate --name <name>` | Create + apply a migration (dev)            |
+| `pnpm db:deploy`                | Apply pending migrations (CI / prod)        |
+| `pnpm db:studio`                | Browse data in the browser                  |
 
 ## Using it
 
@@ -31,12 +31,12 @@ const resumes = await this.prisma.resume.findMany({ where: { authorId } });
 
 ## Files
 
-| Path | What |
-| --- | --- |
-| `prisma/schema.prisma` | Models: `User`, `Resume` |
-| `prisma.config.ts` | CLI config — connection URL for migrations |
-| `src/prisma/prisma.service.ts` | Client + lifecycle hooks |
-| `src/generated/prisma/` | Generated client (gitignored) |
+| Path                           | What                                       |
+| ------------------------------ | ------------------------------------------ |
+| `prisma/schema.prisma`         | Models: `User`, `Resume`                   |
+| `prisma.config.ts`             | CLI config — connection URL for migrations |
+| `src/prisma/prisma.service.ts` | Client + lifecycle hooks                   |
+| `src/generated/prisma/`        | Generated client (gitignored)              |
 
 ## Status
 
@@ -50,12 +50,12 @@ pnpm db:migrate --name init
 
 ## If something breaks
 
-| Symptom | Fix |
-| --- | --- |
-| `Cannot find module './generated/prisma/client'` | `pnpm db:generate` |
-| Types don't match the schema | `pnpm db:generate` |
-| `DATABASE_URL is not set` | Check `apps/server/.env` (gitignored, not in a fresh clone) |
-| Build emits `dist/src/main.js` | A file outside `src/` got compiled — see the note below |
+| Symptom                                          | Fix                                                         |
+| ------------------------------------------------ | ----------------------------------------------------------- |
+| `Cannot find module './generated/prisma/client'` | `pnpm db:generate`                                          |
+| Types don't match the schema                     | `pnpm db:generate`                                          |
+| `DATABASE_URL is not set`                        | Check `apps/server/.env` (gitignored, not in a fresh clone) |
+| Build emits `dist/src/main.js`                   | A file outside `src/` got compiled — see the note below     |
 
 ## Notes for anyone changing the setup
 

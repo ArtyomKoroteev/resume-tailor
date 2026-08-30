@@ -1,5 +1,5 @@
 name: Build Web Application
-on: 
+on:
   push:
     branches:
       - develop

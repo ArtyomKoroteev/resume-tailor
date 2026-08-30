@@ -9,12 +9,18 @@ import { TypeScaleRow } from './type-scale-row';
 
 interface TypographyTabProps {
   typography: Typography;
-  onFontChange: (patch: Partial<Pick<Typography, 'headingFont' | 'bodyFont'>>) => void;
+  onFontChange: (
+    patch: Partial<Pick<Typography, 'headingFont' | 'bodyFont'>>,
+  ) => void;
   onTypeStyleChange: (key: TypeScaleKey, patch: Partial<TypeStyle>) => void;
 }
 
-const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">{children}</h4>
+const SectionLabel: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
+  <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">
+    {children}
+  </h4>
 );
 
 export const TypographyTab: React.FC<TypographyTabProps> = ({
@@ -78,7 +84,9 @@ export const TypographyTab: React.FC<TypographyTabProps> = ({
               key={row.key}
               label={row.label}
               sample={row.sample}
-              fontFamily={row.isHeading ? typography.headingFont : typography.bodyFont}
+              fontFamily={
+                row.isHeading ? typography.headingFont : typography.bodyFont
+              }
               style={typography.scale[row.key]}
               onChange={(patch) => onTypeStyleChange(row.key, patch)}
             />

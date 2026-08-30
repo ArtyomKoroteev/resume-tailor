@@ -35,14 +35,14 @@ pnpm install
 
 ## Scripts (root)
 
-| Command               | What it does                                  |
-| --------------------- | --------------------------------------------- |
-| `pnpm dev`            | Run `dev` across all apps via Turbo           |
-| `pnpm build`          | Build all apps and packages                   |
-| `pnpm lint`           | Run oxlint across the workspace               |
-| `pnpm check-types`    | Type-check all packages                       |
-| `pnpm format`         | Format the repo with oxfmt                    |
-| `pnpm format:check`   | Verify formatting without writing             |
+| Command             | What it does                        |
+| ------------------- | ----------------------------------- |
+| `pnpm dev`          | Run `dev` across all apps via Turbo |
+| `pnpm build`        | Build all apps and packages         |
+| `pnpm lint`         | Run oxlint across the workspace     |
+| `pnpm check-types`  | Type-check all packages             |
+| `pnpm format`       | Format the repo with oxfmt          |
+| `pnpm format:check` | Verify formatting without writing   |
 
 Target a single package with Turbo's `--filter`:
 

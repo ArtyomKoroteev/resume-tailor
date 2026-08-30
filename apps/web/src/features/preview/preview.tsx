@@ -1,7 +1,10 @@
 import { useResumeStore } from '../../stores';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { toCssVariables, type AppearanceSettings } from '../appearance-settings';
+import {
+  toCssVariables,
+  type AppearanceSettings,
+} from '../appearance-settings';
 
 interface PreviewProps {
   appearanceSettings: AppearanceSettings;

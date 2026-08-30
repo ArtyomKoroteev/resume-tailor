@@ -7,7 +7,12 @@ interface AuthCardProps {
   footer: React.ReactNode;
 }
 
-export const AuthCard: React.FC<AuthCardProps> = ({ title, subtitle, children, footer }) => {
+export const AuthCard: React.FC<AuthCardProps> = ({
+  title,
+  subtitle,
+  children,
+  footer,
+}) => {
   return (
     <div className="flex flex-1 items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm">

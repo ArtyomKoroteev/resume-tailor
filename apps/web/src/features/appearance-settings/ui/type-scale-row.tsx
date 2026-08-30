@@ -35,7 +35,9 @@ export const TypeScaleRow: React.FC<TypeScaleRowProps> = ({
         >
           {sample}
         </span>
-        <span className="text-[10px] uppercase tracking-wide text-muted shrink-0">{label}</span>
+        <span className="text-[10px] uppercase tracking-wide text-muted shrink-0">
+          {label}
+        </span>
       </div>
 
       <div className="flex items-center gap-1 text-xs text-muted">
@@ -53,7 +55,9 @@ export const TypeScaleRow: React.FC<TypeScaleRowProps> = ({
           aria-label={`${label} font weight`}
           className="border border-gray-200 rounded-sm px-1 py-0.5"
           value={style.weight}
-          onChange={(e) => onChange({ weight: Number(e.target.value) as FontWeight })}
+          onChange={(e) =>
+            onChange({ weight: Number(e.target.value) as FontWeight })
+          }
         >
           {FONT_WEIGHT_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>

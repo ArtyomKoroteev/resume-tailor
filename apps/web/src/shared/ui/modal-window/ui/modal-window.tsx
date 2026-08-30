@@ -37,7 +37,11 @@ export const ModalWindow: React.FC<{
             </span>
             <div className="btn-group flex items-center gap-2">
               <button onClick={toggleExpandMode}>
-                {isExpanded ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+                {isExpanded ? (
+                  <Minimize2 className="w-3 h-3" />
+                ) : (
+                  <Maximize2 className="w-3 h-3" />
+                )}
               </button>
               <button onClick={onClose}>
                 <X className="w-4 h-4" />
@@ -45,7 +49,9 @@ export const ModalWindow: React.FC<{
             </div>
           </div>
           <div className="modal-content flex-1">{content}</div>
-          <div className="modal-footer flex justify-end items-center gap-2 p-2">{footer}</div>
+          <div className="modal-footer flex justify-end items-center gap-2 p-2">
+            {footer}
+          </div>
         </div>
       </div>
     </>

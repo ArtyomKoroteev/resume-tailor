@@ -20,7 +20,9 @@ const toNumber = (value: unknown, fallback: number): number => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
-const migrateLegacySettings = (legacy: LegacyAppearanceSettings): AppearanceSettings => {
+const migrateLegacySettings = (
+  legacy: LegacyAppearanceSettings,
+): AppearanceSettings => {
   const defaults = DEFAULT_APPEARANCE_SETTINGS;
   const bodyFont = legacy.fontFamily || defaults.typography.bodyFont;
 
@@ -33,14 +35,20 @@ const migrateLegacySettings = (legacy: LegacyAppearanceSettings): AppearanceSett
         body: {
           ...defaults.typography.scale.body,
           size: toNumber(legacy.fontSize, defaults.typography.scale.body.size),
-          lineHeight: toNumber(legacy.lineHeight, defaults.typography.scale.body.lineHeight),
+          lineHeight: toNumber(
+            legacy.lineHeight,
+            defaults.typography.scale.body.lineHeight,
+          ),
         },
       },
     },
     spacing: {
       ...defaults.spacing,
       pagePadding: toNumber(legacy.pagePadding, defaults.spacing.pagePadding),
-      sectionSpacing: toNumber(legacy.sectionSpacing, defaults.spacing.sectionSpacing),
+      sectionSpacing: toNumber(
+        legacy.sectionSpacing,
+        defaults.spacing.sectionSpacing,
+      ),
       listIndent: toNumber(legacy.listIndent, defaults.spacing.listIndent),
     },
     colors: {
@@ -52,7 +60,9 @@ const migrateLegacySettings = (legacy: LegacyAppearanceSettings): AppearanceSett
 };
 
 /** Merges stored values over defaults so newly added fields stay populated. */
-const mergeWithDefaults = (stored: Partial<AppearanceSettings>): AppearanceSettings => {
+const mergeWithDefaults = (
+  stored: Partial<AppearanceSettings>,
+): AppearanceSettings => {
   const defaults = DEFAULT_APPEARANCE_SETTINGS;
 
   return {

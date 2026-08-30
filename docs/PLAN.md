@@ -5,6 +5,7 @@
 Build a static web application that converts ATS-optimized Markdown resumes into styled HTML previews and downloadable PDF files.
 
 The app should:
+
 - Accept Markdown generated/refined by Cursor or AI tools
 - Render a professional ATS-friendly resume preview
 - Allow visual customization
@@ -17,29 +18,35 @@ The app should:
 # Tech Stack
 
 ## Frontend
+
 - React
 - TypeScript
 - Vite
 
 ## Monorepo
+
 - pnpm workspaces
 - Turborepo
 
 ## Styling
+
 - Tailwind CSS
 - CSS Variables for themes
 
 ## Markdown
+
 - react-markdown
 - remark / rehype ecosystem
 
 ## PDF Export
+
 - Initial MVP:
   - Browser print API (`window.print`)
 - Future:
   - Playwright PDF generation service
 
 ## Deployment
+
 - Vercel / Netlify / GitHub Pages
 
 ---
@@ -88,6 +95,7 @@ PDF Export
 ## 1. Markdown Editor
 
 ### Features
+
 - Paste Markdown
 - Upload `.md` file
 - Autosave
@@ -96,6 +104,7 @@ PDF Export
 - Formatting helper
 
 ### Tasks
+
 - [ ] Create modal editor
 - [ ] Add editor state management
 - [ ] Implement localStorage autosave
@@ -107,6 +116,7 @@ PDF Export
 ## 2. Resume Parser
 
 ### Goal
+
 Convert raw Markdown into a typed internal model.
 
 ### Example Flow
@@ -116,6 +126,7 @@ Markdown → ResumeModel
 ```
 
 ### Tasks
+
 - [ ] Define ResumeModel TypeScript interfaces
 - [ ] Create markdown parser
 - [ ] Parse sections:
@@ -133,12 +144,14 @@ Markdown → ResumeModel
 ## 3. Resume Preview
 
 ### Features
+
 - Live rendering
 - A4 / US Letter support
 - Zoom controls
 - Responsive preview area
 
 ### Tasks
+
 - [ ] Create paper layout component
 - [ ] Render ResumeModel
 - [ ] Add typography system
@@ -151,12 +164,14 @@ Markdown → ResumeModel
 ## 4. Theme System
 
 ### Features
+
 - Accent color
 - Font family
 - Spacing density
 - Font scaling
 
 ### Tasks
+
 - [ ] Create CSS variable system
 - [ ] Add theme state management
 - [ ] Add color picker
@@ -169,11 +184,13 @@ Markdown → ResumeModel
 ## 5. ATS Optimization Features
 
 ### Features
+
 - ATS-safe mode
 - One-page mode
 - Simple semantic structure
 
 ### Tasks
+
 - [ ] Create ATS-safe layout mode
 - [ ] Remove non-semantic visual elements in ATS mode
 - [ ] Add compact spacing mode
@@ -184,12 +201,15 @@ Markdown → ResumeModel
 ## 6. Export System
 
 ### MVP
+
 Use browser print styles.
 
 ### Future
+
 Server-side Playwright PDF generation.
 
 ### Tasks
+
 - [ ] Add print stylesheet
 - [ ] Implement PDF export
 - [ ] Implement HTML export
@@ -201,6 +221,7 @@ Server-side Playwright PDF generation.
 ## 7. State Persistence
 
 ### Tasks
+
 - [ ] Save markdown locally
 - [ ] Save UI settings
 - [ ] Save selected theme
@@ -212,10 +233,12 @@ Server-side Playwright PDF generation.
 ## 8. Templates
 
 ### Initial Templates
+
 - Professional
 - Compact
 
 ### Tasks
+
 - [ ] Create template interface
 - [ ] Create renderer abstraction
 - [ ] Implement first template
@@ -226,6 +249,7 @@ Server-side Playwright PDF generation.
 # UI Layout
 
 ## Left Sidebar
+
 - Navigation
 - Editor button
 - Templates
@@ -233,11 +257,13 @@ Server-side Playwright PDF generation.
 - GitHub link
 
 ## Center Area
+
 - Resume preview
 - Paper rendering
 - Zoom controls
 
 ## Right Sidebar
+
 - Appearance settings
 - Export settings
 - ATS toggles
@@ -247,6 +273,7 @@ Server-side Playwright PDF generation.
 # MVP Scope
 
 ## Included
+
 - Markdown editor
 - Resume parsing
 - Live preview
@@ -255,6 +282,7 @@ Server-side Playwright PDF generation.
 - Local persistence
 
 ## Excluded
+
 - Backend
 - Authentication
 - Cloud storage
@@ -266,22 +294,26 @@ Server-side Playwright PDF generation.
 # Future Improvements
 
 ## Backend
+
 - Store resumes
 - User accounts
 - Resume history
 
 ## AI Features
+
 - ATS scoring
 - Resume improvement suggestions
 - Job description matching
 - Keyword optimization
 
 ## Advanced Export
+
 - Server-side PDF rendering
 - Multi-column layouts
 - Custom fonts
 
 ## Collaboration
+
 - Shareable links
 - Team templates
 
@@ -290,23 +322,28 @@ Server-side Playwright PDF generation.
 # Development Order
 
 ## Phase 1
+
 - Project setup
 - Layout
 - Markdown editor
 
 ## Phase 2
+
 - Resume parser
 - Preview rendering
 
 ## Phase 3
+
 - Theme system
 - Export functionality
 
 ## Phase 4
+
 - ATS features
 - Templates
 
 ## Phase 5
+
 - Polish
 - Testing
 - Deployment
@@ -316,11 +353,13 @@ Server-side Playwright PDF generation.
 # Testing
 
 ## Unit Tests
+
 - Parser
 - Theme utilities
 - Export utilities
 
 ## E2E Tests
+
 - Paste markdown
 - Render preview
 - Export PDF
@@ -331,11 +370,13 @@ Server-side Playwright PDF generation.
 # Deployment
 
 ## Static Hosting
+
 - Vercel
 - Netlify
 - GitHub Pages
 
 ## CI/CD
+
 - GitHub Actions
 - Turbo caching
 - Type checking

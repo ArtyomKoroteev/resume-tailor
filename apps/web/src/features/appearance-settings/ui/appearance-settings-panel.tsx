@@ -14,7 +14,9 @@ const TABS: Array<{ id: TabId; label: string }> = [
   { id: 'colors', label: 'Colors' },
 ];
 
-export const AppearanceSettingsPanel: React.FC<AppearanceSettingsController> = ({
+export const AppearanceSettingsPanel: React.FC<
+  AppearanceSettingsController
+> = ({
   settings,
   updateTypography,
   updateTypeStyle,
@@ -29,7 +31,9 @@ export const AppearanceSettingsPanel: React.FC<AppearanceSettingsController> = (
       <div className="flex items-start justify-between gap-2">
         <div>
           <h3 className="font-bold text-sm">Appearance</h3>
-          <p className="text-xs text-muted">Type, spacing and colors — applied instantly.</p>
+          <p className="text-xs text-muted">
+            Type, spacing and colors — applied instantly.
+          </p>
         </div>
         <button
           type="button"
@@ -53,7 +57,9 @@ export const AppearanceSettingsPanel: React.FC<AppearanceSettingsController> = (
       {activeTab === 'spacing' && (
         <SpacingTab spacing={settings.spacing} onChange={updateSpacing} />
       )}
-      {activeTab === 'colors' && <ColorsTab colors={settings.colors} onChange={updateColors} />}
+      {activeTab === 'colors' && (
+        <ColorsTab colors={settings.colors} onChange={updateColors} />
+      )}
     </div>
   );
 };

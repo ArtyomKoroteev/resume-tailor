@@ -14,9 +14,14 @@ const COLOR_ROWS: Array<{ key: keyof Colors; label: string }> = [
 export const ColorsTab: React.FC<ColorsTabProps> = ({ colors, onChange }) => {
   return (
     <div>
-      <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">Palette</h4>
+      <h4 className="text-[10px] font-semibold uppercase tracking-wide text-muted mb-2">
+        Palette
+      </h4>
       {COLOR_ROWS.map((row) => (
-        <div key={row.key} className="flex justify-between items-center gap-2 py-1.5">
+        <div
+          key={row.key}
+          className="flex justify-between items-center gap-2 py-1.5"
+        >
           <label htmlFor={`color-${row.key}`} className="text-sm">
             {row.label}
           </label>

@@ -1,4 +1,6 @@
-export type AuthErrors = Partial<Record<'name' | 'email' | 'password' | 'confirmPassword', string>>;
+export type AuthErrors = Partial<
+  Record<'name' | 'email' | 'password' | 'confirmPassword', string>
+>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 8;
