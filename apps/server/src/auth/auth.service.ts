@@ -22,8 +22,7 @@ export class AuthService {
   private createUrl(params: Record<string, string>): string {
     const domain = this.configService.getOrThrow<string>('AUTH0_DOMAIN');
     const clientId = this.configService.getOrThrow<string>('AUTH0_CLIENT_ID');
-    const callbackUrl =
-      this.configService.getOrThrow<string>('AUTH0_CALLBACK_URL');
+    const callbackUrl = this.configService.getOrThrow<string>('AUTH0_CALLBACK_URL');
     const urlParams = new URLSearchParams({
       response_type: 'code',
       client_id: clientId,
@@ -44,21 +43,16 @@ export class AuthService {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         client_id: this.configService.getOrThrow<string>('AUTH0_CLIENT_ID'),
-        client_secret: this.configService.getOrThrow<string>(
-          'AUTH0_CLIENT_SECRET',
-        ),
+        client_secret: this.configService.getOrThrow<string>('AUTH0_CLIENT_SECRET'),
         code,
-        redirect_uri:
-          this.configService.getOrThrow<string>('AUTH0_CALLBACK_URL'),
+        redirect_uri: this.configService.getOrThrow<string>('AUTH0_CALLBACK_URL'),
       }),
     });
 
     const payload = await response.json();
 
     if (!response.ok) {
-      throw new UnauthorizedException(
-        payload?.error_description ?? 'Auth0 token exchange failed',
-      );
+      throw new UnauthorizedException(payload?.error_description ?? 'Auth0 token exchange failed');
     }
 
     const profile = new JwtService().decode(payload.id_token);
